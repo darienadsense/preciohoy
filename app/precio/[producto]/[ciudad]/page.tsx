@@ -57,25 +57,31 @@ export default async function Page({ params }: PageProps) {
       </h1>
 
       <p className="mb-8 text-lg text-gray-400">
-  El precio de {price.item.name.toLowerCase()} en {price.location.name} va
-  de S/ {price.priceMin.toString()} a S/ {price.priceMax.toString()}, con un promedio de S/{" "}
-  {price.priceAvg.toString()}.
-</p>
+        El precio de {price.item.name.toLowerCase()} en {price.location.name} va
+        de S/ {price.priceMin.toString()} a S/ {price.priceMax.toString()}, con
+        un promedio de S/ {price.priceAvg.toString()}.
+      </p>
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="rounded-2xl border p-4">
           <div className="text-sm text-gray-400">Mínimo</div>
-          <div className="text-2xl font-semibold">S/ {price.priceMin}</div>
+          <div className="text-2xl font-semibold">
+            S/ {price.priceMin.toString()}
+          </div>
         </div>
 
         <div className="rounded-2xl border p-4">
           <div className="text-sm text-gray-400">Promedio</div>
-          <div className="text-2xl font-semibold">S/ {price.priceAvg}</div>
+          <div className="text-2xl font-semibold">
+            S/ {price.priceAvg.toString()}
+          </div>
         </div>
 
         <div className="rounded-2xl border p-4">
           <div className="text-sm text-gray-400">Máximo</div>
-          <div className="text-2xl font-semibold">S/ {price.priceMax}</div>
+          <div className="text-2xl font-semibold">
+            S/ {price.priceMax.toString()}
+          </div>
         </div>
       </div>
 
