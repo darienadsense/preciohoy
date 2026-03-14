@@ -57,10 +57,10 @@ export default async function Page({ params }: PageProps) {
       </h1>
 
       <p className="mb-8 text-lg text-gray-400">
-        El precio de {price.item.name.toLowerCase()} en {price.location.name} va
-        de S/ {price.priceMin} a S/ {price.priceMax}, con un promedio de S/{" "}
-        {price.priceAvg}.
-      </p>
+  El precio de {price.item.name.toLowerCase()} en {price.location.name} va
+  de S/ {price.priceMin.toString()} a S/ {price.priceMax.toString()}, con un promedio de S/{" "}
+  {price.priceAvg.toString()}.
+</p>
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="rounded-2xl border p-4">
