@@ -6,10 +6,10 @@ export async function POST(request: Request) {
   const password = String(formData.get("password") || "");
 
   if (password !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.redirect(new URL("/login?error=1", request.url));
+    return NextResponse.redirect(new URL("/login?error=1", request.url), 303);
   }
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.set("admin_auth", "ok", {
     httpOnly: true,
     sameSite: "lax",
@@ -18,9 +18,9 @@ export async function POST(request: Request) {
     maxAge: 60 * 60 * 24 * 7,
   });
 
-  return NextResponse.redirect(new URL("/admin", request.url));
+  return NextResponse.redirect(new URL("/admin", request.url), 303);
 }
 
 export async function GET(request: Request) {
-  return NextResponse.redirect(new URL("/login", request.url));
+  return NextResponse.redirect(new URL("/login", request.url), 303);
 }
