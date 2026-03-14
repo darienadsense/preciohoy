@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   cookieStore.set("admin_auth", "ok", {
     httpOnly: true,
     sameSite: "lax",
-    secure: false,
+    secure: true,
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
