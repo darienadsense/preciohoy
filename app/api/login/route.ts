@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL("/login?error=1", request.url));
   }
 
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   cookieStore.set("admin_auth", "ok", {
     httpOnly: true,
     sameSite: "lax",
@@ -19,4 +19,8 @@ export async function POST(request: Request) {
   });
 
   return NextResponse.redirect(new URL("/admin", request.url));
+}
+
+export async function GET(request: Request) {
+  return NextResponse.redirect(new URL("/login", request.url));
 }
