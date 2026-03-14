@@ -1,6 +1,6 @@
-import { MetadataRoute } from "next";
 import type { MetadataRoute } from "next";
-export default function robots() {
+
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
@@ -9,15 +9,6 @@ export default function robots() {
         disallow: ["/admin", "/login"],
       },
     ],
-    sitemap: "http://localhost:3000/sitemap.xml",
-  };
-}
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: "http://localhost:3000/sitemap.xml",
+    sitemap: "https://preciohoy.vercel.app/sitemap.xml",
   };
 }
