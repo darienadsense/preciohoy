@@ -1,9 +1,6 @@
-import type { MetadataRoute } from "next";
 import { prisma } from "../lib/prisma";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "http://localhost:3000";
-
+export default async function sitemap() {
   const prices = await prisma.price.findMany({
     where: { isPublished: true },
     include: {
@@ -12,16 +9,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   });
 
-  const dynamicUrls = prices.map((p) => ({
-    url: `${baseUrl}/precio/${p.item.slug}/${p.location.slug}`,
-    lastModified: p.lastUpdated,
+  const urls = prices.map((price) => ({
+    url: `https://preciohoy.vercel.app/precio/${price.item.slug}/${price.location.slug}`,
+    lastModified: new Date(),
   }));
 
   return [
     {
-      url: baseUrl,
+      url: "https://preciohoy.vercel.app",
       lastModified: new Date(),
     },
-    ...dynamicUrls,
+    ...urls,
   ];
 }
