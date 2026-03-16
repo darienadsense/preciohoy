@@ -58,7 +58,25 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+<h2 className="mt-10 mb-4 text-2xl font-bold">Mercados</h2>
 
+<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+  <a href="/mercado/dolar" className="rounded-xl border p-4 hover:bg-neutral-900">
+    Dólar
+  </a>
+
+  <a href="/mercado/euro" className="rounded-xl border p-4 hover:bg-neutral-900">
+    Euro
+  </a>
+
+  <a href="/mercado/oro" className="rounded-xl border p-4 hover:bg-neutral-900">
+    Oro
+  </a>
+
+  <a href="/mercado/plata" className="rounded-xl border p-4 hover:bg-neutral-900">
+    Plata
+  </a>
+</div>
       <section>
         <h2 className="mb-4 text-2xl font-semibold">Precios destacados</h2>
         <div className="grid gap-4">
