@@ -43,11 +43,6 @@ export async function generateStaticParams() {
 
   return params;
 }
-  return prices.map((price) => ({
-    producto: price.item.slug,
-    ciudad: price.location.slug,
-  }));
-}
 
 export default async function Page({ params }: PageProps) {
   const { producto, ciudad } = await params;
