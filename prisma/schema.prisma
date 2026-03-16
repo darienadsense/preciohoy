@@ -67,3 +67,17 @@ model Price {
   @@unique([itemId, locationId])
   @@map("prices")
 }
+model MarketAsset {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  symbol      String?
+  type        String
+  price       Decimal  @db.Decimal(12, 4)
+  currency    String   @default("PEN")
+  summary     String?
+  source      String?
+  lastUpdated DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

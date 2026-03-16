@@ -237,9 +237,143 @@ async function main() {
     });
   }
 
+  for (const price of prices) {
+    await prisma.price.upsert({
+      where: {
+        itemId_locationId: {
+          itemId: price.itemId,
+          locationId: price.locationId,
+        },
+      },
+      update: {
+        priceMin: price.priceMin,
+        priceMax: price.priceMax,
+        priceAvg: price.priceAvg,
+        currency: "PEN",
+        lastUpdated: new Date(),
+        summary: price.summary,
+        notes: "Rango referencial",
+        isPublished: true,
+        sourceId: mercadoLocal.id,
+      },
+      create: {
+        itemId: price.itemId,
+        locationId: price.locationId,
+        priceMin: price.priceMin,
+        priceMax: price.priceMax,
+        priceAvg: price.priceAvg,
+        currency: "PEN",
+        lastUpdated: new Date(),
+        summary: price.summary,
+        notes: "Rango referencial",
+        isPublished: true,
+        sourceId: mercadoLocal.id,
+      },
+    });
+  }
+
+  await prisma.marketAsset.upsert({
+    where: { slug: "dolar" },
+    update: {
+      name: "Dólar",
+      symbol: "USD/PEN",
+      type: "divisa",
+      price: "3.7300",
+      currency: "PEN",
+      summary: "Precio referencial del dólar en Perú.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+    create: {
+      name: "Dólar",
+      slug: "dolar",
+      symbol: "USD/PEN",
+      type: "divisa",
+      price: "3.7300",
+      currency: "PEN",
+      summary: "Precio referencial del dólar en Perú.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+  });
+
+  await prisma.marketAsset.upsert({
+    where: { slug: "euro" },
+    update: {
+      name: "Euro",
+      symbol: "EUR/PEN",
+      type: "divisa",
+      price: "4.0500",
+      currency: "PEN",
+      summary: "Precio referencial del euro en Perú.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+    create: {
+      name: "Euro",
+      slug: "euro",
+      symbol: "EUR/PEN",
+      type: "divisa",
+      price: "4.0500",
+      currency: "PEN",
+      summary: "Precio referencial del euro en Perú.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+  });
+
+  await prisma.marketAsset.upsert({
+    where: { slug: "oro" },
+    update: {
+      name: "Oro",
+      symbol: "XAU",
+      type: "metal",
+      price: "11250.0000",
+      currency: "PEN",
+      summary: "Precio referencial del oro.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+    create: {
+      name: "Oro",
+      slug: "oro",
+      symbol: "XAU",
+      type: "metal",
+      price: "11250.0000",
+      currency: "PEN",
+      summary: "Precio referencial del oro.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+  });
+
+  await prisma.marketAsset.upsert({
+    where: { slug: "plata" },
+    update: {
+      name: "Plata",
+      symbol: "XAG",
+      type: "metal",
+      price: "124.5000",
+      currency: "PEN",
+      summary: "Precio referencial de la plata.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+    create: {
+      name: "Plata",
+      slug: "plata",
+      symbol: "XAG",
+      type: "metal",
+      price: "124.5000",
+      currency: "PEN",
+      summary: "Precio referencial de la plata.",
+      source: "Mercado financiero",
+      lastUpdated: new Date(),
+    },
+  });
+
   console.log("Seed completado.");
 }
-
 main()
   .then(async () => {
     await prisma.$disconnect();
