@@ -27,13 +27,22 @@ async function getPrice(producto: string, ciudad: string) {
 }
 
 export async function generateStaticParams() {
-  const prices = await prisma.price.findMany({
-    where: { isPublished: true },
-    include: {
-      item: true,
-      location: true,
-    },
-  });
+  const items = await prisma.item.findMany();
+  const locations = await prisma.location.findMany();
+
+  const params = [];
+
+  for (const item of items) {
+    for (const location of locations) {
+      params.push({
+        producto: item.slug,
+        ciudad: location.slug,
+      });
+    }
+  }
+
+  return params;
+}
 
   return prices.map((price) => ({
     producto: price.item.slug,
