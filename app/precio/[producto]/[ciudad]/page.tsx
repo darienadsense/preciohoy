@@ -43,7 +43,6 @@ export async function generateStaticParams() {
 
   return params;
 }
-
   return prices.map((price) => ({
     producto: price.item.slug,
     ciudad: price.location.slug,
